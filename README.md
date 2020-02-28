@@ -45,8 +45,8 @@ Add the following functionality to the application
 1. Rewire the buttons to save the upvote clicks permanently in the database:
 
    1. When the user clicks a button, send a PUT request to the server, at an endpoint of `/characters/<name of character>`
-   1. Create a `put` route on the server to handle this, called `/characters/:name`
-   1. When this server-side route is invoked, add one to the click count for the named character in the database
+   1. Create a ~~`put` route on the server to handle this, called `/characters/:name`~~
+   1. When this server-side route ~~is invoked, add one to the click count for the named character in the database~~
    1. Respond back to the client with a redirect to the index page
    1. Find a way to automatically load enough data to ensure the most recently changed charcter is showing on the screen
 
