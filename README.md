@@ -52,8 +52,8 @@ Add the following functionality to the application
 
 1. Add a button to the bottom of the page labeled "Get More Characters" that will dynamically load the next bunch of characters from the Star Wars API and render them on the page alongside the others:
    1. Add Handlebars to your page
-      1. Load Handlebars from a CDN
-      1. Create a Handlebars template for a single character `div`
+      1. ~~Load Handlebars from a CDN~~
+      1. ~~Create a Handlebars template for a single character `div`~~
    1. When the "Get More" button is clicked, perform an AJAX GET request to `/characters?page=X`, where `X` is the page of data currently requested
    1. Create a new `get` route called `/characters` on the server, that will return a single page of character information as JSON:
       1. When invoked, this route should use superagent on the server to retrieve the next page of results from SWAPI
