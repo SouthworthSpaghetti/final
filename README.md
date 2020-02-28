@@ -31,10 +31,10 @@ Add the following functionality to the application
 
 1. Convert all JavaScript to use jQuery
 
-   1. Load jQuery from a CDN
+   1. Load ~~jQuery from a CDN
    1. Replace as much of the existing vanilla JS with jQuery best practices
 
-1. Convert the existing CSS to SMACSS organiztion
+1. Convert ~~the existing CSS to SMACSS organiztion
 
 1. Add some creative styling to the application, adding styles to the appropriate SMACSS files
    1. Use flexbox or grid to lay out the character cards in a responsive grid.
