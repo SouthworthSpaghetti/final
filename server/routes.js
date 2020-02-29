@@ -15,7 +15,18 @@ const database = require('./database.js');
 function homePageHandler(req, res) {
   // Get page one of the API from star wars
   // THEN, render an EJS Template with that data
-  fetchCharactersFromSWAPI(1)
+  // let X = 1;//FEB28 ANTHONY
+  fetchCharactersFromSWAPI(1)//FEB28 ANTHONY, ?instead of SWAPI(1)-->SWAPI(X)
+    .then(data => res.render('index', data))
+    .catch(error => { throw error; });
+}
+
+function newPageRender(req, res) {
+  console.log("*&*&**&*&*&&*&&", req.params);
+  fetchCharactersFromSWAPI(req.params)
+  // .then(data => res.render('index', data))
+  // .then(data => console.log("/././.", data))
+  // .catch(error => { throw error; });
     .then(data => res.render('index', data))
     .catch(error => { throw error; });
 }
@@ -26,7 +37,7 @@ function fetchCharactersFromSWAPI(pageNumber) {
   // expect a promise  -- they use .then()
   // therefore, we simply return the call to superagent which will
   // resolve with any data found
-
+  console.log(`https://swapi.co/api/people/?page=${pageNumber}`)//FEB28 ANTHONY 
   return superagent.get(`https://swapi.co/api/people/?page=${pageNumber}`)
     .then(response => {
       // After we get the data from the remote API, go to the
@@ -61,6 +72,16 @@ function getNumberOfLikes(data) {
 
       return data;
     })
+}
+
+function updateDatabase(req, res) {
+  // let characterCount = req.params;
+  let characterName = req.params;
+  let sql = 'UPDATE click_counts SET click = (click + 1) WHERE remote_id = $1'
+  let safeValues = [characterName];
+  database.client.query(sql, safeValues);
+  // .then(response => response)
+  // .catch(err => err);
 }
 
 module.exports = { homePageHandler };

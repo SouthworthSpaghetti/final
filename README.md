@@ -41,6 +41,7 @@ Add the following functionality to the application
    1. Incorporate a color theme
    1. Fix the footer to the bottom of the viewport
    1. Add at least one more meaningful improvement to the design
+   ##CREDITS: https://media0.giphy.com/media/11IcYdIIjbtSbm/giphy.gif
 
 1. Rewire the buttons to save the upvote clicks permanently in the database:
 
