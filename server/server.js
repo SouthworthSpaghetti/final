@@ -45,14 +45,20 @@ app.get('/', routes.homePageHandler);
 app.use('*', defaults.notFoundHandler);
 app.use(defaults.errorHandler);
 
+app.put('/characters/:name', routes.updateDatabase);//FEB28 ANTHONY
+// app.get('/characters?page=/:X', routes.newPageRender);
+// app.get('/characters', routes.fetchCharactersFromSWAPI)//FEB28 ANTHONY
+
 // Start the web server on a port (defaults to 3000), after we connect to the database
 function startServer() {
-  let port = process.env.PORT || 3000;
+  let port = process.env.PORT || 3001;//FEB28 ANTHONY ADDITION
   database.connect()
     .then(() => app.listen(port))
     .then(() => console.log(`Server Listening on ${port}`))
     .catch(err => console.error(err));
 }
+
+
 
 // Export our server
 // In index.js, we required this module. In that file, server.start
