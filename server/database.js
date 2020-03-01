@@ -1,5 +1,5 @@
 'use strict';
-
+require('dotenv').config();
 // Bring in the postgres library
 const pg = require('pg');
 
