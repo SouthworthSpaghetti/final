@@ -1,11 +1,12 @@
 'use strict';
 
 // **** Require/Include all of our external dependencies (3rd party modules) ****
-
+require('dotenv').config();
 // Express server library
 const express = require('express');
 // Create an application using express
 const app = express();
+require('ejs');
 
 // CORS (Cross Origin Resource Sharing) to allow (or deny) access to any web server or client
 const cors = require('cors');
@@ -24,6 +25,8 @@ const database = require('./database.js');
 
 // The handlers for dealing with 404 (not found) and 500 (errors)
 const defaults = require('./middleware.js');
+const methodOverride = require('method-override');
+app.use(express.urlencoded({extended:true}));
 
 // The handlers for the routes that this API will actually use
 const routes = require('./routes.js');
@@ -35,19 +38,25 @@ app.use(express.static('./www'));
 // On the server, we'll use EJS to do templates
 app.set('view engine', 'ejs');
 // The location of our EJS Templates
+app.use(methodOverride('_method'));
 app.set('views', './server/views');
 
 // Route Handler Definitions. Each express method and route should call
 // a method that the routes.js file exported
 app.get('/', routes.homePageHandler);
+app.put('/characters/:name', routes.updateDatabase);//FEB28 ANTHONY
+app.get('/characters', routes.updateHomePage);//FEB28 ANTHONY
 
 // Wire in the defaults we required above.
 app.use('*', defaults.notFoundHandler);
 app.use(defaults.errorHandler);
 
-app.put('/characters/:name', routes.updateDatabase);//FEB28 ANTHONY
-// app.get('/characters?page=/:X', routes.newPageRender);
+
+
+
+
 // app.get('/characters', routes.fetchCharactersFromSWAPI)//FEB28 ANTHONY
+
 
 // Start the web server on a port (defaults to 3000), after we connect to the database
 function startServer() {

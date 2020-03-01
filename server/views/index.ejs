@@ -8,15 +8,23 @@
   <link rel="stylesheet" href="/css/base.css" />
   <link rel="stylesheet" href="/css/layout.css" />
   <link rel="stylesheet" href="/css/modules.css" />
+  <script id="newArticle" type="text/x-handlebars-template">
+      <article id="{{nextPage}}"></article>
+  </script>
   <script id="handleTemplate" type="text/x-handlebars-template">
     <div>
-      <header>
-        <h2>{{handleName}}</h2>
-    </header>
-    <span>{{handleCount}}</span>
-    <button>Upvote</button>
+      <form action="/characters/{{handleName}}?_method=PUT" method="post">
+        <label>
+          <header>
+            <h2>{{handleName}}</h2>
+          </header>
+        </label>
+        <label>
+          <span>{{handleCount}}</span>
+        </label>
+        <button type="submit">Upvote</button>
+      </form>
     </div>
-  
   </script>
 </head>
 
@@ -26,21 +34,31 @@
     <p>Vote for your favorites to show what you like!</p>
   </header>
   <main>
-    <section class="characters">
-
-      <% for(let x = 0; x < results.length; x++) { %>
-      <div class="character">
-        <header>
-
-          <h2><%= results[x].name %></h2>
-        </header>
-        <span><%= results[x].likes || 0 %></span>
-        <button class="counter" action="/characters/:<%= results[x].name %>">Upvote</button>
-      </div>
-      <% } %>
-
+    <section class="characters character">
+      <article>
+        
+        <% for(let x = 0; x < results.length; x++) { %>
+          <!-- <input type="text" name="title" value="Anthony" placeholder="Anthony">
+            <textarea name="description" placeholder="name" value="Anthony"></textarea> -->
+            <form action="<%= `/characters/${results[x].name}?_method=PUT` %>" method="post">
+              <label>
+                <header> 
+                  <h2><%= results[x].name %></h2>
+                </header>
+              </label>
+              <label>
+                <span>
+                  <%= results[x].likes || 0 %>
+                </label>
+              </span>
+              <button type="submit">Upvote</button>
+            </form>
+            <% } %>
+          </article>
+          <article id="2"></article>
     </section>
-      <button id="loadMore">Get More</button>
+    <!-- <section id="2"></section> -->
+      <button id="loadMore" class="<%= next.substring((next.length),(next.length - 1)) %>">Get More:</button>
   </main>
   <footer>
     <strong>&copy; 2020 Code Fellows</strong>
